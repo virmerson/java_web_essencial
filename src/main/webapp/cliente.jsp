@@ -30,8 +30,10 @@
 
 <%
 List<Cliente>  lista =  (List<Cliente>)request.getAttribute("lista");
+int i=0;
 for (Cliente c: lista){
-	out.print(c.getEmail()+ "<br/>");
+	out.print(c.getEmail()+      "<a href='cliente?i="+ i +"'>  excluir </a><br/>" );
+	i++;
 }
 %>
 
