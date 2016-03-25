@@ -10,7 +10,7 @@
 function confirma(pi){
 	
 	if (window.confirm("Tem certeza que deseja excluir?")){
-		location.href="cliente?i="+ pi ;
+		location.href="cliente?acao=exc&i="+ pi ;
 	}
 }
 
@@ -27,12 +27,22 @@ function confirma(pi){
 		String msgStr = (String)msg;
 		out.print(msg);
 	}
+	
+	
+	Cliente cli = (Cliente) request.getAttribute("cli");
+	
+	Object iCli =  request.getAttribute("iCli");
+	
+	
+	
 	%>
 </div>
 
 <form method="post" action="cliente">
+
+	<input type="hidden" name="i" value="<%=iCli%>"/>
 	E-mail:
-	<input type="text" value="" name="email" /> 
+	<input type="text" value="<%=cli.getEmail() %>" name="email" /> 
 
 	<input type="submit" value="Save">
 
@@ -42,7 +52,15 @@ function confirma(pi){
 List<Cliente>  lista =  (List<Cliente>)request.getAttribute("lista");
 int i=0;
 for (Cliente c: lista){
-	out.print(c.getEmail()+      "<a href='javascript:confirma("+i+")'>  excluir </a><br/>" );
+	
+%>
+	<%=c.getEmail()  %> 
+	
+	 <a href="javascript:confirma(<%=i%>)">  excluir </a>  |  
+	  <a href="cliente?i=<%=i%>&acao=edit">  editar </a><br/>
+	<br/>
+
+<%
 	i++;
 }
 %>

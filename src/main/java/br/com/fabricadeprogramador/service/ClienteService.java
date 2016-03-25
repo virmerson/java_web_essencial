@@ -14,11 +14,27 @@ public class ClienteService {
 		lista.add(cliente);
 	}
 	
+	public void salvar(int indice, Cliente cliente){
+	
+		if(indice!=-1){
+			//alteração
+			lista.set(indice, cliente);
+		
+		}else {
+			//Cadastra
+			lista.add(cliente);
+		
+		}
+	}
 	public List<Cliente> getTodosClientes(){
 		return lista;
 	}
 	
 	public void excluir(int indice){
 		lista.remove(indice);
+	}
+
+	public Cliente buscarPorIndice(int indice) {
+		return lista.get(indice);
 	}
 }
